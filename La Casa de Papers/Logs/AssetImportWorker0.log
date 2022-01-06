@@ -15,12 +15,12 @@ C:/Users/Carolina Pereira/Documents/GitHub/RVir/La Casa de Papers
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-51663
+52951
 Successfully changed project path to: C:/Users/Carolina Pereira/Documents/GitHub/RVir/La Casa de Papers
 C:/Users/Carolina Pereira/Documents/GitHub/RVir/La Casa de Papers
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 309.91 ms, found 10 plugins.
-Preloading 2 native plugins for Editor in 11.05 ms.
+Refreshing native plugins compatible for Editor in 256.18 ms, found 10 plugins.
+Preloading 2 native plugins for Editor in 9.61 ms.
 Initialize engine version: 2021.1.6f1 (c0fade0cc7e9)
 [Subsystems] Discovering subsystems at path C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2021.1.6f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path C:/Users/Carolina Pereira/Documents/GitHub/RVir/La Casa de Papers/Assets
@@ -35,23 +35,23 @@ Initialize mono
 Mono path[0] = 'C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2021.1.6f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2021.1.6f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2021.1.6f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56580
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56252
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2021.1.6f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.007767 seconds.
+Registered in 0.004335 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 327.96 ms, found 10 plugins.
-Preloading 2 native plugins for Editor in 1.52 ms.
+Refreshing native plugins compatible for Editor in 150.93 ms, found 10 plugins.
+Preloading 2 native plugins for Editor in 0.98 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  8.039 seconds
+- Completed reload, in  3.901 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.070486 seconds.
+Registered in 0.021618 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.92 ms, found 10 plugins.
-Preloading 2 native plugins for Editor in 0.42 ms.
+Refreshing native plugins compatible for Editor in 0.89 ms, found 10 plugins.
+Preloading 2 native plugins for Editor in 0.76 ms.
 [XR] OculusXRPlugin: registering subsystems
 [XR] Unable to register display lifecyle provider: [1]
 [XR] Oculus Input lifecycle provider registered.
@@ -63,75 +63,89 @@ NullReferenceException: Object reference not set to an instance of an object
 (Filename: Library/PackageCache/com.unity.xr.oculus@1.9.0/Runtime/OculusLoader.cs Line: 249)
 
 Mono: successfully reloaded assembly
-- Completed reload, in  3.936 seconds
+- Completed reload, in  1.480 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.58 seconds
-Refreshing native plugins compatible for Editor in 2.51 ms, found 10 plugins.
-Preloading 2 native plugins for Editor in 0.39 ms.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.09 seconds
+Refreshing native plugins compatible for Editor in 1.08 ms, found 10 plugins.
+Preloading 2 native plugins for Editor in 0.24 ms.
 Unloading 3126 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 111.7 MB.
 System memory in use after: 111.9 MB.
 
 Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 3578.
-Total: 8.401800 ms (FindLiveObjects: 0.707800 ms CreateObjectMapping: 0.400100 ms MarkObjects: 7.136500 ms  DeleteObjects: 0.154600 ms)
+Total: 4.774700 ms (FindLiveObjects: 0.571400 ms CreateObjectMapping: 0.380800 ms MarkObjects: 3.659200 ms  DeleteObjects: 0.159800 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/XR
-  artifactKey: Guid(22baeac49dfd54025859cd02808b06f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/XR using Guid(22baeac49dfd54025859cd02808b06f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc008f76a3d54804df8ae9f0397c95e0') in 0.052441 seconds 
+  path: Assets/Office Supplies Low Poly/Assets/uploads_files_872098_Cork+board.stl
+  artifactKey: Guid(46a0c8a3ff0694c43a66ae62f6c07f35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Office Supplies Low Poly/Assets/uploads_files_872098_Cork+board.stl using Guid(46a0c8a3ff0694c43a66ae62f6c07f35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d72c504abbee7c63f30bed2baf99626') in 0.090781 seconds 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.021377 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.03 ms, found 10 plugins.
-Preloading 2 native plugins for Editor in 0.22 ms.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\Users\Carolina Pereira\Documents\GitHub\RVir\La Casa de Papers\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:249 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\Users\Carolina Pereira\Documents\GitHub\RVir\La Casa de Papers\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:234 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.0/Runtime/OculusLoader.cs Line: 249)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.524 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.90 ms, found 10 plugins.
-Preloading 2 native plugins for Editor in 0.16 ms.
-Unloading 3090 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 110.8 MB.
-System memory in use after: 111.0 MB.
-
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3582.
-Total: 5.823400 ms (FindLiveObjects: 0.311500 ms CreateObjectMapping: 0.200600 ms MarkObjects: 5.023500 ms  DeleteObjects: 0.286500 ms)
-
+Received Import Request.
+  Time since last request: 286.206544 seconds.
+  path: Assets/Office Supplies Low Poly/Assets/Prefabs/10928_Corkboard_v3_L3.obj
+  artifactKey: Guid(0d8dc77a7f2c7b04ead50cf9d820b48f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Office Supplies Low Poly/Assets/Prefabs/10928_Corkboard_v3_L3.obj using Guid(0d8dc77a7f2c7b04ead50cf9d820b48f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97d677a74dd29d79e39258e14cb2b590') in 0.284890 seconds 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.012655 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.72 ms, found 10 plugins.
-Preloading 2 native plugins for Editor in 0.13 ms.
-NullReferenceException: Object reference not set to an instance of an object
-  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\Users\Carolina Pereira\Documents\GitHub\RVir\La Casa de Papers\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:249 
-  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\Users\Carolina Pereira\Documents\GitHub\RVir\La Casa de Papers\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:234 
-
-(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.0/Runtime/OculusLoader.cs Line: 249)
-
-Mono: successfully reloaded assembly
-- Completed reload, in  0.920 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.99 ms, found 10 plugins.
-Preloading 2 native plugins for Editor in 0.14 ms.
-Unloading 3090 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 110.9 MB.
-System memory in use after: 111.1 MB.
-
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3586.
-Total: 2.313800 ms (FindLiveObjects: 0.248600 ms CreateObjectMapping: 0.119700 ms MarkObjects: 1.842900 ms  DeleteObjects: 0.101600 ms)
-
+Received Import Request.
+  Time since last request: 266.003982 seconds.
+  path: Assets/ExampleAssets/Models/XRControllerRight.fbx
+  artifactKey: Guid(2d10b9b89f2474de9800b152c3d00004) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExampleAssets/Models/XRControllerRight.fbx using Guid(2d10b9b89f2474de9800b152c3d00004) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '78efbce4b0052df3e4726fa2230bbb8a') in 0.119040 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000631 seconds.
+  path: Assets/ExampleAssets/Models/XRControllerLeft.fbx
+  artifactKey: Guid(e48d18018a0ba46c283d9fd9c227e578) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExampleAssets/Models/XRControllerLeft.fbx using Guid(e48d18018a0ba46c283d9fd9c227e578) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7cf66af2646f4b468f0de5411cc276b3') in 0.106231 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 17.267983 seconds.
+  path: Assets/ExampleAssets/Materials/Controller.mat
+  artifactKey: Guid(3d2e36aacd7dc084b96e0755f1af4137) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExampleAssets/Materials/Controller.mat using Guid(3d2e36aacd7dc084b96e0755f1af4137) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ed690c8eb5f5cfb0ed8f34488606951') in 0.114442 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000405 seconds.
+  path: Assets/Office Supplies Low Poly/Assets/FBX/Materials/No Name.mat
+  artifactKey: Guid(2c8e1d0d2dbc448e59b0498d47f06379) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Office Supplies Low Poly/Assets/FBX/Materials/No Name.mat using Guid(2c8e1d0d2dbc448e59b0498d47f06379) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bec2717ebc967e2d3b4516cde82874df') in 0.016598 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000461 seconds.
+  path: Assets/ExampleAssets/Materials/Grid.mat
+  artifactKey: Guid(3f9336a53d1d2ea43895699cc52cb411) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExampleAssets/Materials/Grid.mat using Guid(3f9336a53d1d2ea43895699cc52cb411) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84b1afa5a4c398f8c6d04fe20bcce0a1') in 0.016535 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000396 seconds.
+  path: Assets/ExampleAssets/Materials/Skybox Light.mat
+  artifactKey: Guid(3a408e788dcbed6429c8d22a01b32a76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExampleAssets/Materials/Skybox Light.mat using Guid(3a408e788dcbed6429c8d22a01b32a76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bbe2ed09cbc21f56a539018e1e111534') in 0.015495 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000419 seconds.
+  path: Assets/Office Supplies Low Poly/Assets/Materials/Office Supplies Low Poly Shared Material.mat
+  artifactKey: Guid(9a831dc5c32c94bc7bb4c555bffe1950) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Office Supplies Low Poly/Assets/Materials/Office Supplies Low Poly Shared Material.mat using Guid(9a831dc5c32c94bc7bb4c555bffe1950) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef8de35e4031a66d947ebfa421fd580e') in 0.022834 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 38.394653 seconds.
+  path: Assets/Office Supplies Low Poly/Assets/Materials/texture.jpg
+  artifactKey: Guid(9d0b9d74223e30f41926ad21c1e4b7ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Office Supplies Low Poly/Assets/Materials/texture.jpg using Guid(9d0b9d74223e30f41926ad21c1e4b7ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e0164e204cb25fc3737772618d5c87b') in 0.046495 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 146.440088 seconds.
+  path: Assets/Office Supplies Low Poly/Assets/Materials/Materials
+  artifactKey: Guid(a78c3299b8626be46834b610a37bd740) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Office Supplies Low Poly/Assets/Materials/Materials using Guid(a78c3299b8626be46834b610a37bd740) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f929571c789373ab00b815480fe2231a') in 0.002649 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000418 seconds.
+  path: Assets/Office Supplies Low Poly/Assets/Materials/Materials/texture.mat
+  artifactKey: Guid(a32789c74b88639488744bbe9ae5f193) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Office Supplies Low Poly/Assets/Materials/Materials/texture.mat using Guid(a32789c74b88639488744bbe9ae5f193) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7602f870c0cf0f9002b18a462fdba8f5') in 0.012858 seconds 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
