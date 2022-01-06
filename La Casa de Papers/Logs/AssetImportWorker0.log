@@ -15,12 +15,12 @@ C:/Users/Carolina Pereira/Documents/GitHub/RVir/La Casa de Papers
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-52951
+53300
 Successfully changed project path to: C:/Users/Carolina Pereira/Documents/GitHub/RVir/La Casa de Papers
 C:/Users/Carolina Pereira/Documents/GitHub/RVir/La Casa de Papers
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 256.18 ms, found 10 plugins.
-Preloading 2 native plugins for Editor in 9.61 ms.
+Refreshing native plugins compatible for Editor in 141.97 ms, found 10 plugins.
+Preloading 2 native plugins for Editor in 3.10 ms.
 Initialize engine version: 2021.1.6f1 (c0fade0cc7e9)
 [Subsystems] Discovering subsystems at path C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2021.1.6f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path C:/Users/Carolina Pereira/Documents/GitHub/RVir/La Casa de Papers/Assets
@@ -35,23 +35,23 @@ Initialize mono
 Mono path[0] = 'C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2021.1.6f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2021.1.6f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2021.1.6f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56252
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56624
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2021.1.6f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.004335 seconds.
+Registered in 0.002641 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 150.93 ms, found 10 plugins.
-Preloading 2 native plugins for Editor in 0.98 ms.
+Refreshing native plugins compatible for Editor in 129.27 ms, found 10 plugins.
+Preloading 2 native plugins for Editor in 0.21 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  3.901 seconds
+- Completed reload, in  1.591 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.021618 seconds.
+Registered in 0.008726 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.89 ms, found 10 plugins.
-Preloading 2 native plugins for Editor in 0.76 ms.
+Refreshing native plugins compatible for Editor in 0.88 ms, found 10 plugins.
+Preloading 2 native plugins for Editor in 0.19 ms.
 [XR] OculusXRPlugin: registering subsystems
 [XR] Unable to register display lifecyle provider: [1]
 [XR] Oculus Input lifecycle provider registered.
@@ -63,89 +63,145 @@ NullReferenceException: Object reference not set to an instance of an object
 (Filename: Library/PackageCache/com.unity.xr.oculus@1.9.0/Runtime/OculusLoader.cs Line: 249)
 
 Mono: successfully reloaded assembly
-- Completed reload, in  1.480 seconds
+- Completed reload, in  1.293 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.09 seconds
-Refreshing native plugins compatible for Editor in 1.08 ms, found 10 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.08 seconds
+Refreshing native plugins compatible for Editor in 0.99 ms, found 10 plugins.
 Preloading 2 native plugins for Editor in 0.24 ms.
 Unloading 3126 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 111.7 MB.
-System memory in use after: 111.9 MB.
+System memory in use before: 111.8 MB.
+System memory in use after: 112.0 MB.
 
-Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 3578.
-Total: 4.774700 ms (FindLiveObjects: 0.571400 ms CreateObjectMapping: 0.380800 ms MarkObjects: 3.659200 ms  DeleteObjects: 0.159800 ms)
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 3579.
+Total: 2.575600 ms (FindLiveObjects: 0.288900 ms CreateObjectMapping: 0.155400 ms MarkObjects: 2.058300 ms  DeleteObjects: 0.071700 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/Office Supplies Low Poly/Assets/uploads_files_872098_Cork+board.stl
-  artifactKey: Guid(46a0c8a3ff0694c43a66ae62f6c07f35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Office Supplies Low Poly/Assets/uploads_files_872098_Cork+board.stl using Guid(46a0c8a3ff0694c43a66ae62f6c07f35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d72c504abbee7c63f30bed2baf99626') in 0.090781 seconds 
+  path: Assets/XR/Loaders
+  artifactKey: Guid(8abd0515267824d82915b19345730a06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/XR/Loaders using Guid(8abd0515267824d82915b19345730a06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6dfee6017bef9e696ec1d7a1bdade93d') in 0.007629 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 286.206544 seconds.
-  path: Assets/Office Supplies Low Poly/Assets/Prefabs/10928_Corkboard_v3_L3.obj
-  artifactKey: Guid(0d8dc77a7f2c7b04ead50cf9d820b48f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Office Supplies Low Poly/Assets/Prefabs/10928_Corkboard_v3_L3.obj using Guid(0d8dc77a7f2c7b04ead50cf9d820b48f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97d677a74dd29d79e39258e14cb2b590') in 0.284890 seconds 
+  Time since last request: 0.000399 seconds.
+  path: Assets/XR/XRGeneralSettings.asset
+  artifactKey: Guid(1a4c68ca72a83449f938d669337cb305) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/XR/XRGeneralSettings.asset using Guid(1a4c68ca72a83449f938d669337cb305) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '328242e245a1293f1234f759e4c2aa7e') in 0.056600 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 266.003982 seconds.
-  path: Assets/ExampleAssets/Models/XRControllerRight.fbx
-  artifactKey: Guid(2d10b9b89f2474de9800b152c3d00004) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ExampleAssets/Models/XRControllerRight.fbx using Guid(2d10b9b89f2474de9800b152c3d00004) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '78efbce4b0052df3e4726fa2230bbb8a') in 0.119040 seconds 
+  Time since last request: 56.881302 seconds.
+  path: Assets/Office Supplies Low Poly/Assets/Example Paper
+  artifactKey: Guid(b3051be93be2b534288d80a29761cde6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Office Supplies Low Poly/Assets/Example Paper using Guid(b3051be93be2b534288d80a29761cde6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3543b25f36cf5d35860f2f25d6af7f6c') in 0.002365 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000631 seconds.
-  path: Assets/ExampleAssets/Models/XRControllerLeft.fbx
-  artifactKey: Guid(e48d18018a0ba46c283d9fd9c227e578) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ExampleAssets/Models/XRControllerLeft.fbx using Guid(e48d18018a0ba46c283d9fd9c227e578) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7cf66af2646f4b468f0de5411cc276b3') in 0.106231 seconds 
+  Time since last request: 23.315775 seconds.
+  path: Assets/Office Supplies Low Poly/Assets/Example Paper/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-1.jpg
+  artifactKey: Guid(787f4fc26ec52af40a003dd487f57700) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Office Supplies Low Poly/Assets/Example Paper/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-1.jpg using Guid(787f4fc26ec52af40a003dd487f57700) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '172fa0cd569745e386b7b4845192ffbc') in 0.096950 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 17.267983 seconds.
-  path: Assets/ExampleAssets/Materials/Controller.mat
-  artifactKey: Guid(3d2e36aacd7dc084b96e0755f1af4137) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ExampleAssets/Materials/Controller.mat using Guid(3d2e36aacd7dc084b96e0755f1af4137) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ed690c8eb5f5cfb0ed8f34488606951') in 0.114442 seconds 
+  Time since last request: 0.000303 seconds.
+  path: Assets/Office Supplies Low Poly/Assets/Example Paper/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-5.jpg
+  artifactKey: Guid(194a3e4bb42cadf4087ef597e5ecb699) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Office Supplies Low Poly/Assets/Example Paper/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-5.jpg using Guid(194a3e4bb42cadf4087ef597e5ecb699) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '164098b4d8069b8ea2d72671226d6e3c') in 0.029764 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000405 seconds.
-  path: Assets/Office Supplies Low Poly/Assets/FBX/Materials/No Name.mat
-  artifactKey: Guid(2c8e1d0d2dbc448e59b0498d47f06379) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Office Supplies Low Poly/Assets/FBX/Materials/No Name.mat using Guid(2c8e1d0d2dbc448e59b0498d47f06379) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bec2717ebc967e2d3b4516cde82874df') in 0.016598 seconds 
+  Time since last request: 0.000399 seconds.
+  path: Assets/Office Supplies Low Poly/Assets/Example Paper/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-4.jpg
+  artifactKey: Guid(684a4b4eed37fb54da31d898f8e66509) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Office Supplies Low Poly/Assets/Example Paper/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-4.jpg using Guid(684a4b4eed37fb54da31d898f8e66509) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '823160eba358e706b5c9a0ee01ed4d93') in 0.016014 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000461 seconds.
-  path: Assets/ExampleAssets/Materials/Grid.mat
-  artifactKey: Guid(3f9336a53d1d2ea43895699cc52cb411) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ExampleAssets/Materials/Grid.mat using Guid(3f9336a53d1d2ea43895699cc52cb411) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84b1afa5a4c398f8c6d04fe20bcce0a1') in 0.016535 seconds 
+  Time since last request: 0.000953 seconds.
+  path: Assets/Office Supplies Low Poly/Assets/Example Paper/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-3.jpg
+  artifactKey: Guid(dba04e5ab2b0aab49b0bb8fe4ac13f19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Office Supplies Low Poly/Assets/Example Paper/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-3.jpg using Guid(dba04e5ab2b0aab49b0bb8fe4ac13f19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '53e892676838c29ecf7e2cbd6da96da7') in 0.024833 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000396 seconds.
-  path: Assets/ExampleAssets/Materials/Skybox Light.mat
-  artifactKey: Guid(3a408e788dcbed6429c8d22a01b32a76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ExampleAssets/Materials/Skybox Light.mat using Guid(3a408e788dcbed6429c8d22a01b32a76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bbe2ed09cbc21f56a539018e1e111534') in 0.015495 seconds 
+  Time since last request: 0.000448 seconds.
+  path: Assets/Office Supplies Low Poly/Assets/Example Paper/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-7.jpg
+  artifactKey: Guid(06ba96139d6492048a715bd289cc7510) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Office Supplies Low Poly/Assets/Example Paper/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-7.jpg using Guid(06ba96139d6492048a715bd289cc7510) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6bb887bae846d502d948426bcf0739c5') in 0.014440 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000419 seconds.
-  path: Assets/Office Supplies Low Poly/Assets/Materials/Office Supplies Low Poly Shared Material.mat
-  artifactKey: Guid(9a831dc5c32c94bc7bb4c555bffe1950) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Office Supplies Low Poly/Assets/Materials/Office Supplies Low Poly Shared Material.mat using Guid(9a831dc5c32c94bc7bb4c555bffe1950) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef8de35e4031a66d947ebfa421fd580e') in 0.022834 seconds 
+  Time since last request: 0.000334 seconds.
+  path: Assets/Office Supplies Low Poly/Assets/Example Paper/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-2.jpg
+  artifactKey: Guid(ff73bba175a7dc248bf13806064b8673) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Office Supplies Low Poly/Assets/Example Paper/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-2.jpg using Guid(ff73bba175a7dc248bf13806064b8673) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c889d68d1cf8634f293a912d840d9cab') in 0.030888 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 38.394653 seconds.
-  path: Assets/Office Supplies Low Poly/Assets/Materials/texture.jpg
-  artifactKey: Guid(9d0b9d74223e30f41926ad21c1e4b7ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Office Supplies Low Poly/Assets/Materials/texture.jpg using Guid(9d0b9d74223e30f41926ad21c1e4b7ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e0164e204cb25fc3737772618d5c87b') in 0.046495 seconds 
+  Time since last request: 0.000335 seconds.
+  path: Assets/Office Supplies Low Poly/Assets/Example Paper/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-6.jpg
+  artifactKey: Guid(a1d258f2a86bfd042ad23117c3197e7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Office Supplies Low Poly/Assets/Example Paper/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-6.jpg using Guid(a1d258f2a86bfd042ad23117c3197e7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f29c5700ea7abd46b7e9bb0099b6e09') in 0.024079 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 146.440088 seconds.
-  path: Assets/Office Supplies Low Poly/Assets/Materials/Materials
-  artifactKey: Guid(a78c3299b8626be46834b610a37bd740) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Office Supplies Low Poly/Assets/Materials/Materials using Guid(a78c3299b8626be46834b610a37bd740) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f929571c789373ab00b815480fe2231a') in 0.002649 seconds 
+  Time since last request: 6.066817 seconds.
+  path: Assets
+  artifactKey: Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets using Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a956ff0e83af221383b1bd8a5281aa6') in 0.001981 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000418 seconds.
-  path: Assets/Office Supplies Low Poly/Assets/Materials/Materials/texture.mat
-  artifactKey: Guid(a32789c74b88639488744bbe9ae5f193) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Office Supplies Low Poly/Assets/Materials/Materials/texture.mat using Guid(a32789c74b88639488744bbe9ae5f193) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7602f870c0cf0f9002b18a462fdba8f5') in 0.012858 seconds 
+  Time since last request: 7.592819 seconds.
+  path: Assets/Pinboard
+  artifactKey: Guid(3ec81b41f9a2d87429d2219bbf7b8eed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pinboard using Guid(3ec81b41f9a2d87429d2219bbf7b8eed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62fa5b86dd8889b38fe863eaf727f1af') in 0.002405 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 37.356076 seconds.
+  path: Assets/Pinboard/texture
+  artifactKey: Guid(d08f1ba24ee020c4583fd15731c085c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pinboard/texture using Guid(d08f1ba24ee020c4583fd15731c085c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd444cbf607d9964b5ddc7a551a14b6c1') in 0.002279 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 7.504475 seconds.
+  path: Assets/Pinboard/Obj
+  artifactKey: Guid(faef4bdae2da31f40b7a967ca87df02c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pinboard/Obj using Guid(faef4bdae2da31f40b7a967ca87df02c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8e9e1735f6f970cc33d669b88ce3a15') in 0.002538 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 46.086743 seconds.
+  path: Assets/Example Paper/Materials/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-1.mat
+  artifactKey: Guid(3df46e47a583d2144ad7c026b7f1692c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Example Paper/Materials/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-1.mat using Guid(3df46e47a583d2144ad7c026b7f1692c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac99a6ec8d9770245f1087f767e7782e') in 0.098783 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1122.573007 seconds.
+  path: Assets/Example Paper/Materials/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-4.mat
+  artifactKey: Guid(844b51d840a43bb47abee87aa7610221) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Example Paper/Materials/Evaluating_the_Benefits_of_the_Immersive_Space_to_Think (1)-4.mat using Guid(844b51d840a43bb47abee87aa7610221) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58f9d153b80feaa7791f93690623e9e5') in 0.019569 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 91.812361 seconds.
+  path: Assets/Example Paper/New Material.mat
+  artifactKey: Guid(3924e35b2edfffa439203874a75a3836) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Example Paper/New Material.mat using Guid(3924e35b2edfffa439203874a75a3836) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '01beae75d60683c14aa1966281d98d30') in 0.016775 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.040511 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.98 ms, found 10 plugins.
+Preloading 2 native plugins for Editor in 0.26 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\Users\Carolina Pereira\Documents\GitHub\RVir\La Casa de Papers\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\Users\Carolina Pereira\Documents\GitHub\RVir\La Casa de Papers\Library\PackageCache\com.unity.xr.oculus@1.9.0\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.0/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.374 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.05 ms, found 10 plugins.
+Preloading 2 native plugins for Editor in 0.26 ms.
+Unloading 3097 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 136.6 MB.
+System memory in use after: 136.8 MB.
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3730.
+Total: 2.338900 ms (FindLiveObjects: 0.299500 ms CreateObjectMapping: 0.179000 ms MarkObjects: 1.811800 ms  DeleteObjects: 0.047800 ms)
+
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
