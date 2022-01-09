@@ -36,21 +36,33 @@ public class ControllerManager : MonoBehaviour
         SelectObject(transform.position, transform.forward, lineMaxLength);
 
         float rightIndexTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, controller);
+        Debug.Log("index: " + rightIndexTrigger);
 
-        if(selectedObject != null && selectedObject.name == "default" && grabbingObject && grabbedObject.layer == 3){
-            PinPaper(); //wip
+        if(rightIndexTrigger > 0.5f && grabbingObject && grabbedObject.GetComponent<Highlighter>() != null){
+            Debug.Log("selected: " + selectedObject);
+            if(selectedObject!=null && selectedObject.layer == 3){
+                Highlight();
+            }
+        }
+
+        if(rightIndexTrigger > 0.5f && selectedObject != null && selectedObject.tag == "Corkboard" && grabbingObject && grabbedObject.layer == 3){
+            PinToCorkboard(); //wip
+        }
+
+        if(rightIndexTrigger > 0.5f && selectedObject != null && selectedObject.tag == "Placeholder" && grabbingObject && grabbedObject.layer == 3){
+            PinToPlaceholder(); //wip
         }
 
         float rightHandTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, controller);
         
-        if(selectedObject != null && !grabbingObject && rightHandTrigger > 0.5f){
+        if(selectedObject != null && !grabbingObject && rightHandTrigger > 0.5f && rightIndexTrigger < 0.5f){
             HoldObject();
         }
 
-        rightHandTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, controller);
+        //rightHandTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, controller);
 
         if(grabbingObject && rightHandTrigger <= 0.5f){
-            ReleaseObject();
+            ReleaseObject(resetTransform, grabbedObject.transform.position);
         }
 
     }
@@ -63,7 +75,7 @@ public class ControllerManager : MonoBehaviour
         Vector3 endPosition = targetPos + (length * direction);
 
         if(Physics.Raycast(ray, out hit)){
-            Debug.Log("hit! " + hit.collider.gameObject.name);
+            //Debug.Log("hit! " + hit.collider.gameObject.name);
             if(hit.collider.gameObject.name != "Plane"){
                 //hit.collider.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
                 selectedObject = hit.collider.gameObject; 
@@ -76,7 +88,7 @@ public class ControllerManager : MonoBehaviour
 
     private void HoldObject(){
         //Debug.Log("hold!");
-        if(selectedObject.transform.parent == corkboard.transform) return;
+        if(selectedObject.tag == "Corkboard" || selectedObject.tag=="Placeholder") return;
         selectedObject.transform.parent = grab_spot;
         selectedObject.transform.position = grab_spot.position;
         collider = selectedObject.GetComponent<Collider>();
@@ -85,20 +97,28 @@ public class ControllerManager : MonoBehaviour
         grabbingObject = true;
     }
 
-    private void ReleaseObject(bool flag = false){
+    private void ReleaseObject(Transform parent, Vector3 pos){
         //Debug.Log("release!");
         collider.enabled = true;
-        grabbedObject.transform.parent = resetTransform;
-        if(flag)
-            grabbedObject.transform.parent = corkboard.transform;
+        if(pos != null)
+            grabbedObject.transform.position = pos;
+        grabbedObject.transform.parent = parent;
         //selectedObject = null;
         grabbingObject = false;
     }
 
-    private void PinPaper(){
+    private void PinToCorkboard(){
         Debug.Log("pinning");
-        Vector3 pos = new Vector3(hitPoint.x, hitPoint.y, -1.43f);
-        grabbedObject.transform.position = pos;
-        ReleaseObject(true);
+        ReleaseObject(corkboard.transform, hitPoint);
+    }
+
+    private void Highlight(){
+        Debug.Log("Highlighting");
+        grabbedObject.GetComponent<Highlighter>().Highlight(hitPoint, selectedObject);
+    }
+
+    private void PinToPlaceholder(){
+        Debug.Log("pinning to main cluster");
+        ReleaseObject(selectedObject.transform, selectedObject.transform.position);
     }
 }
