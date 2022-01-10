@@ -10,14 +10,14 @@ public class ControllerManager : MonoBehaviour
     public Transform grab_spot;
     public OVRInput.Controller controller;
 
-    public float lineWidth = 0.1f;
-    public float lineMaxLength = 10f;
-
     private GameObject selectedObject = null;
     public Transform resetTransform;
 
+    private float lineMaxLength = 10f;
+    
     private bool grabbingObject = false;
     private GameObject grabbedObject = null;
+    private GameObject highlight = null;
     private GameObject corkboard = null;
     private Vector3 hitPoint = new Vector3();
     private Collider collider = null;
@@ -25,7 +25,7 @@ public class ControllerManager : MonoBehaviour
     void Start()
     {
        resetTransform = GameObject.Find("Environment").transform;
-       corkboard = GameObject.Find("Corkboard");
+       corkboard = GameObject.Find("Corkboard_reset");
     }
 
     // Update is called once per frame
@@ -36,12 +36,19 @@ public class ControllerManager : MonoBehaviour
         SelectObject(transform.position, transform.forward, lineMaxLength);
 
         float rightIndexTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, controller);
-        Debug.Log("index: " + rightIndexTrigger);
+        //Debug.Log("index: " + rightIndexTrigger);
 
         if(rightIndexTrigger > 0.5f && grabbingObject && grabbedObject.GetComponent<Highlighter>() != null){
-            Debug.Log("selected: " + selectedObject);
+            //Debug.Log("selected: " + selectedObject);
             if(selectedObject!=null && selectedObject.layer == 3){
                 Highlight();
+            }
+        }
+
+        if(rightIndexTrigger > 0.5f && grabbingObject && grabbedObject.GetComponent<Eraser>() != null){
+            Debug.Log("highlight: " + highlight.name);
+            if(highlight!=null){
+                Erase();
             }
         }
 
@@ -76,7 +83,12 @@ public class ControllerManager : MonoBehaviour
 
         if(Physics.Raycast(ray, out hit)){
             //Debug.Log("hit! " + hit.collider.gameObject.name);
-            if(hit.collider.gameObject.name != "Plane"){
+            if(hit.collider.gameObject.tag == "Highlight"){
+                selectedObject = hit.collider.gameObject.transform.parent.gameObject;
+                highlight = hit.collider.gameObject;
+                hitPoint = hit.point;
+            }
+            else if(hit.collider.gameObject.name != "Plane"){
                 //hit.collider.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
                 selectedObject = hit.collider.gameObject; 
                 hitPoint = hit.point;        
@@ -102,23 +114,32 @@ public class ControllerManager : MonoBehaviour
         collider.enabled = true;
         if(pos != null)
             grabbedObject.transform.position = pos;
+        if(selectedObject.tag == "Corkboard")
+            grabbedObject.transform.rotation = corkboard.transform.rotation;
+        else if(parent != resetTransform)
+            grabbedObject.transform.rotation = parent.rotation;
         grabbedObject.transform.parent = parent;
         //selectedObject = null;
         grabbingObject = false;
     }
 
     private void PinToCorkboard(){
-        Debug.Log("pinning");
+        //Debug.Log("pinning");
         ReleaseObject(corkboard.transform, hitPoint);
     }
 
     private void Highlight(){
-        Debug.Log("Highlighting");
+        //Debug.Log("Highlighting");
         grabbedObject.GetComponent<Highlighter>().Highlight(hitPoint, selectedObject);
     }
 
     private void PinToPlaceholder(){
-        Debug.Log("pinning to main cluster");
+        //Debug.Log("pinning to main cluster");
         ReleaseObject(selectedObject.transform, selectedObject.transform.position);
+    }
+
+    private void Erase(){
+        grabbedObject.GetComponent<Eraser>().Erase(highlight);
+        highlight = null;
     }
 }

@@ -22,5 +22,6 @@ public class Highlighter : MonoBehaviour
 
     public void Highlight(Vector3 pos, GameObject parent){
         var o = Instantiate(prefab, pos, parent.transform.rotation, parent.transform);
+        o.tag = "Highlight";
     }
 }
