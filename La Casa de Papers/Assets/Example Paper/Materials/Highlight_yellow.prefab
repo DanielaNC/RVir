@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1829978697193982382}
   - component: {fileID: 3725022673738493678}
   - component: {fileID: 8231743417302608406}
+  - component: {fileID: 784152252281044095}
   m_Layer: 0
   m_Name: Highlight_yellow
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1055422809349409485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.1808, y: 1.7664, z: 10.8366}
-  m_LocalScale: {x: 0.005, y: 0.005, z: 0.0001}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.0001}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -97,3 +98,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &784152252281044095
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055422809349409485}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9976988, y: 1, z: 26.187897}
+  m_Center: {x: -0.0011506025, y: 0, z: -0.22888184}

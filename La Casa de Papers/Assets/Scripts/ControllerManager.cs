@@ -38,7 +38,7 @@ public class ControllerManager : MonoBehaviour
         float rightIndexTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, controller);
         //Debug.Log("index: " + rightIndexTrigger);
 
-        if(rightIndexTrigger > 0.5f && grabbingObject && grabbedObject.GetComponent<Highlighter>() != null){
+        if(rightIndexTrigger > 0.5f && grabbingObject && grabbedObject.GetComponent<Highlighter>() != null && highlight == null){
             //Debug.Log("selected: " + selectedObject);
             if(selectedObject!=null && selectedObject.layer == 3){
                 Highlight();
@@ -46,8 +46,8 @@ public class ControllerManager : MonoBehaviour
         }
 
         if(rightIndexTrigger > 0.5f && grabbingObject && grabbedObject.GetComponent<Eraser>() != null){
-            Debug.Log("highlight: " + highlight.name);
             if(highlight!=null){
+                Debug.Log("highlight: " + highlight.name);
                 Erase();
             }
         }
@@ -92,6 +92,7 @@ public class ControllerManager : MonoBehaviour
                 //hit.collider.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
                 selectedObject = hit.collider.gameObject; 
                 hitPoint = hit.point;        
+                highlight = null;
             }
         }
         else

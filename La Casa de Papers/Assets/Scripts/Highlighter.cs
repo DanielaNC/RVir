@@ -7,7 +7,7 @@ public class Highlighter : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject prefab = null;
-    public float defaultScale = 0.005f;
+    public float defaultScale = 0.01f;
 
     void Start()
     {
