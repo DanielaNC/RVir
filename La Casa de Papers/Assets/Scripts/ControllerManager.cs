@@ -21,6 +21,9 @@ public class ControllerManager : MonoBehaviour
     private GameObject corkboard = null;
     private Vector3 hitPoint = new Vector3();
     private Collider collider = null;
+    private bool isHighlighting = false;
+
+    private Vector3 highlight_pos = new Vector3();
 
     void Start()
     {
@@ -37,6 +40,9 @@ public class ControllerManager : MonoBehaviour
 
         float rightIndexTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, controller);
         //Debug.Log("index: " + rightIndexTrigger);
+
+        if (rightIndexTrigger < 0.5f && grabbingObject && grabbedObject.GetComponent<Highlighter>() != null || !grabbingObject)
+            isHighlighting = false;
 
         if(rightIndexTrigger > 0.5f && grabbingObject && grabbedObject.GetComponent<Highlighter>() != null && highlight == null){
             //Debug.Log("selected: " + selectedObject);
@@ -81,22 +87,30 @@ public class ControllerManager : MonoBehaviour
 
         Vector3 endPosition = targetPos + (length * direction);
 
-        if(Physics.Raycast(ray, out hit)){
+        if (Physics.Raycast(ray, out hit))
+        {
             //Debug.Log("hit! " + hit.collider.gameObject.name);
-            if(hit.collider.gameObject.tag == "Highlight"){
+            if (hit.collider.gameObject.tag == "Highlight")
+            {
                 selectedObject = hit.collider.gameObject.transform.parent.gameObject;
                 highlight = hit.collider.gameObject;
                 hitPoint = hit.point;
+                OVRInput.SetControllerVibration(1.0f, 1.0f, controller);
             }
-            else if(hit.collider.gameObject.name != "Plane"){
+            else if (hit.collider.gameObject.name != "Plane")
+            {
                 //hit.collider.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-                selectedObject = hit.collider.gameObject; 
-                hitPoint = hit.point;        
+                selectedObject = hit.collider.gameObject;
+                hitPoint = hit.point;
                 highlight = null;
+                OVRInput.SetControllerVibration(1.0f, 1.0f, controller);
             }
         }
         else
+        {
             selectedObject = null;
+            OVRInput.SetControllerVibration(0.0f, 0.0f, controller);
+        }
     }
 
     private void HoldObject(){
@@ -131,7 +145,14 @@ public class ControllerManager : MonoBehaviour
 
     private void Highlight(){
         //Debug.Log("Highlighting");
-        grabbedObject.GetComponent<Highlighter>().Highlight(hitPoint, selectedObject);
+        if (!isHighlighting)
+        {
+            highlight_pos = grabbedObject.GetComponent<Highlighter>().Highlight(hitPoint, selectedObject).transform.position;
+            isHighlighting = true;
+        } else
+        {
+            grabbedObject.GetComponent<Highlighter>().Highlight(new Vector3(hitPoint.x, highlight_pos.y, highlight_pos.z), selectedObject);
+        }
     }
 
     private void PinToPlaceholder(){

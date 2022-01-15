@@ -7,7 +7,7 @@ public class Highlighter : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject prefab = null;
-    public float defaultScale = 0.01f;
+    public float defaultScale = 1.00f;
 
     void Start()
     {
@@ -20,8 +20,9 @@ public class Highlighter : MonoBehaviour
         
     }
 
-    public void Highlight(Vector3 pos, GameObject parent){
+    public GameObject Highlight(Vector3 pos, GameObject parent){
         var o = Instantiate(prefab, pos, parent.transform.rotation, parent.transform);
         o.tag = "Highlight";
+        return o;
     }
 }
