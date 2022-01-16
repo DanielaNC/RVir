@@ -24,8 +24,7 @@ public class PaperManager : MonoBehaviour
                     Debug.Log("Material: " + paper.transform.Find("Quad").GetComponent<Renderer>().sharedMaterial.name.ToString());
                     for (int i = 0; i < papers.Length; i++)
                     {
-                        Debug.Log("lol: " + string.Equals(paper.transform.Find("Quad").GetComponent<Renderer>().sharedMaterial.name.ToString(), papers[i].transform.Find("Quad").GetComponent<Renderer>().sharedMaterial.name.ToString()));
-                        //if (string.Equals(paper.transform.Find("Quad").GetComponent<Renderer>().sharedMaterial.name.ToString(), papers[i].transform.Find("Quad").GetComponent<Renderer>().sharedMaterial.name.ToString()))
+                        
                         if (paper.transform.Find("Quad").GetComponent<Renderer>().sharedMaterial == papers[i].transform.Find("Quad").GetComponent<Renderer>().sharedMaterial)
                         {
                             if (papers[i].GetComponent<Paper>() != null && papers[i].GetComponent<Paper>().id != -1)
@@ -82,22 +81,41 @@ public class PaperManager : MonoBehaviour
         }
     }
 
-    public void UpdatePapers(GameObject parent, int id, GameObject obj)
+    public void UpdatePapers(GameObject parent, GameObject obj, bool flag = false)
     {
         Vector3 local_pos = obj.transform.position;
+        if(parent.GetComponentInChildren<Paper>() == null) {
+            return;
+        }
+        int id = parent.GetComponentInChildren<Paper>().id;
         foreach(var paper in papers)
         {
-            if (paper.transform == parent.transform) {
-                //don't update
+            if(paper.transform == parent.transform)
                 continue;
-            }
 
             else if (paper.GetComponent<Paper>().id == id) {
-                var o = Instantiate(obj, local_pos, paper.transform.rotation, paper.transform);
-                o.transform.position = local_pos;
+                var rotation = paper.transform.rotation;
+                var pos = paper.transform.position;
+                paper.transform.rotation = parent.transform.rotation;
+                paper.transform.position = parent.transform.position;
+                if(!flag){
+                    var o = Instantiate(obj, local_pos, paper.transform.rotation, paper.transform);
+                }
+                else{
+                    for(int i =0; i < paper.transform.childCount; i++){
+                        var child = paper.transform.GetChild(i);
+                        if(child.gameObject.tag == obj.tag && paper.transform.TransformPoint(child.position) == parent.transform.TransformPoint(obj.transform.position)){
+                            Destroy(child.gameObject);
+                            Debug.Log("Found child");
+                        }
+                    }
+                }
+                paper.transform.rotation = rotation;
+                paper.transform.position = pos;
             }
         }
     }
+
 
     // add sheets automatically pls
 }
