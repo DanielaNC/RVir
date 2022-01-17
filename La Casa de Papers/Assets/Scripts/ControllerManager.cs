@@ -9,22 +9,29 @@ public class ControllerManager : MonoBehaviour
     // Start is called before the first frame update
     public Transform grab_spot;
     public Transform carrossel;
+    public Transform cam;
+    public Transform resetTransform;
+    public GameObject corkboard = null;
+    public Transform penRotation = null;
+
     public OVRInput.Controller controller;
     private Color resetColor;
 
     private GameObject selectedObject = null;
-    public Transform resetTransform;
 
     private float lineMaxLength = 10f;
     
     private bool grabbingObject = false;
     private GameObject grabbedObject = null;
+    private GameObject lastGrabbedObject = null;
     private GameObject highlight = null;
-    public GameObject corkboard = null;
+    private GameObject line = null;
     private Vector3 hitPoint = new Vector3();
     private Collider collider = null;
     private bool isHighlighting = false;
-    private bool isDragging = false;
+    private bool isDraggingX = false;
+    private bool isDraggingY = false;
+    private bool hasDeletedLastLine = false;
     private Vector3 lastDragPoint = new Vector3();
 
     private Vector3 highlight_pos = new Vector3();
@@ -43,18 +50,23 @@ public class ControllerManager : MonoBehaviour
         SelectObject(transform.position, transform.forward, lineMaxLength);
 
         float rightIndexTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, controller);
-        //Debug.Log("index: " + rightIndexTrigger);
-
-
-        /* if(isPinning && rightIndexTrigger > 0.5f && rightHandTrigger > 0.5f)
-            return; */
 
         if (rightIndexTrigger < 0.5f || !grabbingObject){
             isHighlighting = false;
         }
 
-        if(OVRInput.Get(OVRInput.Button.One, controller)){
-            Drag(OVRInput.GetLocalControllerPosition(controller));
+        if(OVRInput.Get(OVRInput.Button.One, controller) && (grabbingObject && grabbedObject.GetComponent<Pen>() == null) || OVRInput.Get(OVRInput.Button.One, controller) && !grabbingObject){
+            RotateCarousselX(cam.InverseTransformPoint(grab_spot.position));
+            //Debug.Log("Initial pos: " + OVRInput.GetLocalControllerPosition(controller));
+
+        }
+
+        if(OVRInput.Get(OVRInput.Button.One, controller) && (grabbingObject && grabbedObject.GetComponent<Pen>() != null)){
+            FreeHandDeleteLine();
+        }
+
+        if(OVRInput.Get(OVRInput.Button.Two, controller)){
+            RotateCarousselY(cam.InverseTransformPoint(grab_spot.position));
             //Debug.Log("Initial pos: " + OVRInput.GetLocalControllerPosition(controller));
 
         }
@@ -66,19 +78,30 @@ public class ControllerManager : MonoBehaviour
             }
         }
 
+        if(rightIndexTrigger > 0.5f && grabbingObject && grabbedObject.GetComponent<Pen>() != null && (selectedObject == null || selectedObject.layer == 3 )){ // 3: paper
+            hasDeletedLastLine = false;
+            FreeHandDraw();
+        }
+
+        if(OVRInput.Get(OVRInput.Button.One, controller) && grabbingObject && grabbedObject.GetComponent<Pen>() != null){
+            DeleteLine();
+        } 
+
         if(rightIndexTrigger > 0.5f && grabbingObject && grabbedObject.GetComponent<Eraser>() != null){
             if(highlight!=null){
-                Debug.Log("highlight: " + highlight.name);
-                Erase();
+                EraseHighlight();
             }
+
+            if(line!=null)
+                EraseLine();
         }
 
         if(rightIndexTrigger > 0.5f && selectedObject != null && selectedObject.tag == "Corkboard" && grabbingObject && grabbedObject.layer == 3){
-            PinToCorkboard(); //wip
+            PinToCorkboard();
         }
 
         if(rightIndexTrigger > 0.5f && selectedObject != null && selectedObject.tag == "Placeholder" && grabbingObject && grabbedObject.layer == 3){
-            PinToPlaceholder(); //wip
+            PinToPlaceholder();
         }
 
         float rightHandTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, controller);
@@ -93,7 +116,13 @@ public class ControllerManager : MonoBehaviour
         }
 
         if(!OVRInput.Get(OVRInput.Button.One, controller)){
-            isDragging = false;
+            isDraggingX = false;
+            //Debug.Log("Final pos: " + OVRInput.GetLocalControllerPosition(controller));
+
+        }
+
+        if(!OVRInput.Get(OVRInput.Button.Two, controller)){
+            isDraggingY = false;
             //Debug.Log("Final pos: " + OVRInput.GetLocalControllerPosition(controller));
 
         }
@@ -116,18 +145,33 @@ public class ControllerManager : MonoBehaviour
                     selectedObject = null;
                     //Debug.Log("COLLISION");
                 }
+
                 selectedObject = hit.collider.gameObject.transform.parent.gameObject;
                 highlight = hit.collider.gameObject;
                 hitPoint = hit.point;
                 OVRInput.SetControllerVibration(0.5f, 0.5f, controller);
             }
+
+            else if (hit.collider.gameObject.tag == "Line")
+            {
+                selectedObject = hit.collider.gameObject.transform.parent.gameObject;
+                line = hit.collider.gameObject;
+                hitPoint = hit.point;
+                OVRInput.SetControllerVibration(0.5f, 0.5f, controller);
+            }
+
             else if (hit.collider.gameObject.name != "Plane")
             {
                 //hit.collider.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
                 selectedObject = hit.collider.gameObject;
                 hitPoint = hit.point;
                 highlight = null;
-                OVRInput.SetControllerVibration(0.5f, 0.5f, controller);
+                OVRInput.SetControllerVibration(0.0f, 0.0f, controller);
+            }
+
+            else{
+                selectedObject = null;
+                OVRInput.SetControllerVibration(0.0f, 0.0f, controller);
             }
         }
         else
@@ -142,6 +186,8 @@ public class ControllerManager : MonoBehaviour
         if(selectedObject.tag == "Corkboard" || selectedObject.tag=="Placeholder") return;
         selectedObject.transform.parent = grab_spot;
         selectedObject.transform.position = grab_spot.position;
+        if(selectedObject.tag == "Pen")
+            selectedObject.transform.rotation = penRotation.rotation;
         collider = selectedObject.GetComponent<Collider>();
         collider.enabled = false;
         grabbedObject = selectedObject;
@@ -153,17 +199,24 @@ public class ControllerManager : MonoBehaviour
         collider.enabled = true;
         if(pos != null)
             grabbedObject.transform.position = pos;
-        if(selectedObject != null && selectedObject.tag == "Corkboard")
+        if(selectedObject != null && parent.gameObject.tag == "Corkboard")
             grabbedObject.transform.rotation = corkboard.transform.rotation;
         else if(pin && parent != resetTransform)
             grabbedObject.transform.rotation = parent.rotation;
         grabbedObject.transform.parent = parent;
+        if(pin)
+            grabbedObject.transform.parent = parent.transform.parent.gameObject.transform;
         //selectedObject = null;
+        if(grabbedObject.GetComponent<Paper>() != null)
+            grabbedObject.GetComponent<Paper>().isPinned = parent;
         grabbingObject = false;
+        lastGrabbedObject = grabbedObject;
+        grabbedObject = null;
     }
 
     private void PinToCorkboard(){
         //Debug.Log("pinning");
+        grabbedObject.GetComponent<Paper>().isPinned = corkboard.transform;
         ReleaseObject(corkboard.transform, hitPoint, true);
     }
 
@@ -189,19 +242,25 @@ public class ControllerManager : MonoBehaviour
 
     private void PinToPlaceholder(){
         //Debug.Log("pinning to main cluster");
+        grabbedObject.GetComponent<Paper>().isPinned = selectedObject.transform;
         ReleaseObject(selectedObject.transform, selectedObject.transform.position, true);
     }
 
-    private void Erase(){
-        GameObject.Find("Manager").GetComponent<PaperManager>().UpdatePapers(selectedObject, highlight, true);
+    private void EraseHighlight(){
+        GameObject.Find("Manager").GetComponent<PaperManager>().UpdatePapers(highlight.transform.parent.gameObject, highlight, true);
         grabbedObject.GetComponent<Eraser>().Erase(highlight);
         highlight = null;
     }
 
-    private void Drag(Vector3 pos){
-        if(!isDragging){
+    private void EraseLine(){
+        line.GetComponent<LineManager>().DeleteSelf();
+        line = null;
+    }
+
+    private void RotateCarousselX(Vector3 pos){
+        if(!isDraggingX){
             lastDragPoint = pos;
-            isDragging = true;
+            isDraggingX = true;
             return;
         }
 
@@ -209,14 +268,55 @@ public class ControllerManager : MonoBehaviour
             var target = carrossel;
             if(pos.x > lastDragPoint.x){
                 //rotate right
-                target.RotateAround(target.position, Vector3.up, 40 * Time.deltaTime);
+                carrossel.gameObject.GetComponent<CarousselManager>().RotateCarousselX(40.0f);
             }
             else{
                 //rotate left
-                target.RotateAround(target.position, Vector3.up, -40 * Time.deltaTime);
+                carrossel.gameObject.GetComponent<CarousselManager>().RotateCarousselX(-40.0f);
             }
 
             lastDragPoint = pos;
+        }
+    }
+
+    private void RotateCarousselY(Vector3 pos){
+        if(!isDraggingY){
+            lastDragPoint = pos;
+            isDraggingY = true;
+            return;
+        }
+
+        else{
+            var target = carrossel;
+            if(pos.y > lastDragPoint.y){
+                //rotate right
+                carrossel.gameObject.GetComponent<CarousselManager>().RotateCarousselY(40.0f);
+            }
+            else{
+                //rotate left
+                carrossel.gameObject.GetComponent<CarousselManager>().RotateCarousselY(-40.0f);
+            }
+
+            lastDragPoint = pos;
+        }
+    }
+
+    private void FreeHandDraw(){
+        grabbedObject.GetComponent<Pen>().DrawLine(hitPoint, selectedObject);
+    }
+
+    private void DeleteLine(){
+        grabbedObject.GetComponent<Pen>().NewLine();
+    }
+
+    private void FreeHandDeleteLine(){
+        Debug.Log("Here!"); //I should've check if this printed fml
+        if(!hasDeletedLastLine){
+            if(grabbingObject && grabbedObject.GetComponent<Pen>() != null)
+                grabbedObject.GetComponent<Pen>().NewLine();
+            else if(lastGrabbedObject.GetComponent<Pen>() != null)
+                lastGrabbedObject.GetComponent<Pen>().NewLine();
+            hasDeletedLastLine = true;
         }
     }
 }

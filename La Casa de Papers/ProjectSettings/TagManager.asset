@@ -9,6 +9,8 @@ TagManager:
   - Highlight
   - Paper
   - Pen
+  - MenuButton
+  - Line
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - Paper
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

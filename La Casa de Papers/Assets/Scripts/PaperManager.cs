@@ -7,9 +7,11 @@ public class PaperManager : MonoBehaviour
     // Start is called before the first frame update
 
     private GameObject[] papers;
+    private Transform env;
    
     void Start()
     {
+        env = GameObject.Find("Environment").transform;
         papers = GameObject.FindGameObjectsWithTag("Paper");
         //Debug.Log("Length: " + papers.Length);
         int j = 0;
@@ -83,8 +85,9 @@ public class PaperManager : MonoBehaviour
 
     public void UpdatePapers(GameObject parent, GameObject obj, bool flag = false)
     {
+        if(obj == null) return;
         Vector3 local_pos = obj.transform.position;
-        if(parent.GetComponentInChildren<Paper>() == null) {
+        if(parent != null && parent.GetComponentInChildren<Paper>() == null) {
             return;
         }
         int id = parent.GetComponentInChildren<Paper>().id;
@@ -98,15 +101,18 @@ public class PaperManager : MonoBehaviour
                 var pos = paper.transform.position;
                 paper.transform.rotation = parent.transform.rotation;
                 paper.transform.position = parent.transform.position;
+
                 if(!flag){
                     var o = Instantiate(obj, local_pos, paper.transform.rotation, paper.transform);
+                    o.tag = "Highlight";
                 }
+
                 else{
+                    // SOMETHING IS WRONG HELP
                     for(int i =0; i < paper.transform.childCount; i++){
                         var child = paper.transform.GetChild(i);
-                        if(child.gameObject.tag == obj.tag && paper.transform.TransformPoint(child.position) == parent.transform.TransformPoint(obj.transform.position)){
+                        if(child.gameObject.tag == obj.tag && child.position == obj.transform.position){
                             Destroy(child.gameObject);
-                            Debug.Log("Found child");
                         }
                     }
                 }
@@ -116,6 +122,4 @@ public class PaperManager : MonoBehaviour
         }
     }
 
-
-    // add sheets automatically pls
 }
