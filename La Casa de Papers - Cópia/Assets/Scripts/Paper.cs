@@ -5,4 +5,5 @@ using UnityEngine;
 public class Paper : MonoBehaviour
 {
     public int id = -1;
+    public Transform isPinned = null;
 }
