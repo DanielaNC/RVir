@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class DocumentPage
+public class DocumentPage: MonoBehaviour
 {
-    public Material pageImage;
+    public int document_id = 0;
 }

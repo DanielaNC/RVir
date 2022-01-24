@@ -24,9 +24,9 @@ public class Pen : MonoBehaviour
         
     }
 
-    public void DrawLine(Vector3 pos, GameObject parent){
+    public GameObject DrawLine(Vector3 pos, GameObject parent){
         //Debug.Log("Drawing line");
-        if(parent == null) return;
+        if(parent == null) return null;
         if(clickCounter > 1 && line != null){
             DrawLine(line.GetComponent<LineRenderer>().GetPosition(1), parent);
             DrawLine(pos, parent);
@@ -36,7 +36,7 @@ public class Pen : MonoBehaviour
             UpdateLine(pos, parent);
             //clickCounter = 0;
         }
-        if(clickCounter == 0 && parent == null || clickCounter == 0 && pos == null) return;
+        if(clickCounter == 0 && parent == null || clickCounter == 0 && pos == null) return null;
         var obj = new GameObject();
         var start = Instantiate(obj, pos, parent.transform.rotation, parent.transform);
         Destroy(obj);
@@ -48,6 +48,8 @@ public class Pen : MonoBehaviour
         lines.Insert(0, line);
 
         clickCounter++;
+
+        return line;
     }
 
     public void UpdateLine(Vector3 pos, GameObject parent){

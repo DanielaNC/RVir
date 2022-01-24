@@ -33,6 +33,7 @@ public class ControllerManager : MonoBehaviour
     private bool isDraggingY = false;
     private bool hasDeletedLastLine = false;
     private Vector3 lastDragPoint = new Vector3();
+    private bool openMenu = false;
 
     private Vector3 highlight_pos = new Vector3();
 
@@ -50,15 +51,34 @@ public class ControllerManager : MonoBehaviour
         SelectObject(transform.position, transform.forward, lineMaxLength);
 
         float rightIndexTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, controller);
+        
+        float rightHandTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, controller);
+
+        if(selectedObject != null && selectedObject.tag == "Menu"){
+            if(rightIndexTrigger > 0.5f || rightHandTrigger > 0.5f || OVRInput.Get(OVRInput.Button.One, controller) || OVRInput.Get(OVRInput.Button.Two, controller)){
+                OpenCloseMenu(selectedObject);
+                return;
+            }
+        }
+
+        if(selectedObject != null && selectedObject.tag == "Button"){
+            if(rightIndexTrigger > 0.5f || rightHandTrigger > 0.5f || OVRInput.Get(OVRInput.Button.One, controller) || OVRInput.Get(OVRInput.Button.Two, controller)){
+                TriggerButton(selectedObject);
+                return;
+            }
+        }
 
         if (rightIndexTrigger < 0.5f || !grabbingObject){
             isHighlighting = false;
+            FreeHandDeleteLine();
         }
 
-        if(OVRInput.Get(OVRInput.Button.One, controller) && (grabbingObject && grabbedObject.GetComponent<Pen>() == null) || OVRInput.Get(OVRInput.Button.One, controller) && !grabbingObject){
-            RotateCarousselX(cam.InverseTransformPoint(grab_spot.position));
-            //Debug.Log("Initial pos: " + OVRInput.GetLocalControllerPosition(controller));
+        if (rightIndexTrigger > 0.5f && !grabbingObject && selectedObject != null && selectedObject.tag == "Document"){
+            OpenDocument();
+        }
 
+        if (rightIndexTrigger > 0.5f && !grabbingObject && selectedObject != null && selectedObject.transform.parent == carrossel){
+            CloseDocument();
         }
 
         if(OVRInput.Get(OVRInput.Button.One, controller) && (grabbingObject && grabbedObject.GetComponent<Pen>() != null)){
@@ -96,17 +116,23 @@ public class ControllerManager : MonoBehaviour
                 EraseLine();
         }
 
-        if(rightIndexTrigger > 0.5f && selectedObject != null && selectedObject.tag == "Corkboard" && grabbingObject && grabbedObject.layer == 3){
+        if(rightHandTrigger <= 0.5f && selectedObject != null && selectedObject.tag == "Corkboard" && grabbingObject && grabbedObject.layer == 3){
             PinToCorkboard();
         }
 
-        if(rightIndexTrigger > 0.5f && selectedObject != null && selectedObject.tag == "Placeholder" && grabbingObject && grabbedObject.layer == 3){
+        if(rightHandTrigger <= 0.5f && selectedObject != null && selectedObject.tag == "Placeholder" && grabbingObject && grabbedObject.layer == 3){
             PinToPlaceholder();
         }
 
-        float rightHandTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, controller);
+        if(OVRInput.Get(OVRInput.Button.One, controller) && !grabbingObject){
+            RotateCarousselX(cam.InverseTransformPoint(grab_spot.position));
+            //Debug.Log("Initial pos: " + OVRInput.GetLocalControllerPosition(controller));
+
+        }
+
         
         if(selectedObject != null && !grabbingObject && rightHandTrigger > 0.5f && rightIndexTrigger < 0.5f){
+            if(selectedObject.transform.parent.gameObject.tag == "Document") return;
             HoldObject();
         }
         //rightHandTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, controller);
@@ -215,8 +241,6 @@ public class ControllerManager : MonoBehaviour
     }
 
     private void PinToCorkboard(){
-        //Debug.Log("pinning");
-        grabbedObject.GetComponent<Paper>().isPinned = corkboard.transform;
         ReleaseObject(corkboard.transform, hitPoint, true);
     }
 
@@ -241,8 +265,6 @@ public class ControllerManager : MonoBehaviour
     }
 
     private void PinToPlaceholder(){
-        //Debug.Log("pinning to main cluster");
-        grabbedObject.GetComponent<Paper>().isPinned = selectedObject.transform;
         ReleaseObject(selectedObject.transform, selectedObject.transform.position, true);
     }
 
@@ -302,21 +324,47 @@ public class ControllerManager : MonoBehaviour
     }
 
     private void FreeHandDraw(){
-        grabbedObject.GetComponent<Pen>().DrawLine(hitPoint, selectedObject);
+        var o = grabbedObject.GetComponent<Pen>().DrawLine(hitPoint, selectedObject);
+        GameObject.Find("Manager").GetComponent<PaperManager>().UpdatePapers(selectedObject, o);
     }
 
     private void DeleteLine(){
+        // FIXME
         grabbedObject.GetComponent<Pen>().NewLine();
     }
 
     private void FreeHandDeleteLine(){
-        Debug.Log("Here!"); //I should've check if this printed fml
         if(!hasDeletedLastLine){
             if(grabbingObject && grabbedObject.GetComponent<Pen>() != null)
                 grabbedObject.GetComponent<Pen>().NewLine();
-            else if(lastGrabbedObject.GetComponent<Pen>() != null)
+            else if(lastGrabbedObject != null && lastGrabbedObject.GetComponent<Pen>() != null)
                 lastGrabbedObject.GetComponent<Pen>().NewLine();
             hasDeletedLastLine = true;
         }
+    }
+
+    private void OpenDocument(){
+        selectedObject.GetComponent<Document>().Open();
+        GameObject.FindObjectOfType<CarousselManager>().OpenDocument(selectedObject);
+    }
+
+    private void CloseDocument(){
+        //selectedObject.transform.parent.gameObject.GetComponent<Document>().Close();
+        GameObject.FindObjectOfType<CarousselManager>().CloseDocument();
+    }
+
+    private void OpenCloseMenu(GameObject menu){
+        if(menu == null || menu.GetComponent<MenuManager>()==null) return;
+        if(openMenu)
+            menu.GetComponent<MenuManager>().Close();
+        else
+            menu.GetComponent<MenuManager>().Open();
+
+        openMenu = !openMenu;
+    }
+
+    private void TriggerButton(GameObject button){
+        if(button == null || button.GetComponent<MenuButton>()==null) return;
+        button.transform.parent.gameObject.transform.parent.gameObject.GetComponent<MenuManager>().TriggerButton(button.GetComponent<MenuButton>().id);
     }
 }

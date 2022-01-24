@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 5973214246594674905, guid: d5e0e9fe59dd16042ace36f8bfcefa37,
         type: 3}
       propertyPath: m_Name
-      value: PenLine
+      value: PenLine_green
       objectReference: {fileID: 0}
     - target: {fileID: 5973214246594674911, guid: d5e0e9fe59dd16042ace36f8bfcefa37,
         type: 3}
@@ -71,6 +71,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7781404265634538615, guid: d5e0e9fe59dd16042ace36f8bfcefa37,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5e0e9fe59dd16042ace36f8bfcefa37, type: 3}

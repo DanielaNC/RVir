@@ -3,7 +3,12 @@ guid: 1a8cd2b041781534c85e31b112028ee0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - hideCover: {fileID: 2100000, guid: 2dc6683ef77fbc140a2511b71b6ea8e2, type: 2}
+  - backCover: {fileID: 2100000, guid: 2dc6683ef77fbc140a2511b71b6ea8e2, type: 2}
+  - cover: {fileID: 2100000, guid: 6f55edfecc3fb154e96592f428007a08, type: 2}
+  - carrossel: {instanceID: 0}
+  - trans: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
